@@ -418,7 +418,7 @@ function handleMapWheel(event) {
   event.preventDefault();
 
   const wheelDelta = event.deltaMode === WheelEvent.DOM_DELTA_LINE ? event.deltaY * 16 : event.deltaY;
-  const factor = Math.exp(-wheelDelta * 0.0015);
+  const factor = Math.exp(-wheelDelta * 0.0045);
 
   zoomMap(factor, getSvgPoint(event.clientX, event.clientY));
 }
