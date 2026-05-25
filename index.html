@@ -3,6 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore which countries have public holidays on any day in 2026, with a world map, population estimates, and global holiday rankings."
+    />
+    <link rel="canonical" href="https://worldholidaymap.com/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#ebe8dd" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="World Holiday Map" />
+    <meta property="og:title" content="World Holiday Map" />
+    <meta
+      property="og:description"
+      content="See which countries have a public holiday on any selected date in 2026."
+    />
+    <meta property="og:url" content="https://worldholidaymap.com/" />
+    <meta property="og:image" content="https://worldholidaymap.com/social-card.svg" />
+    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="World Holiday Map" />
+    <meta
+      name="twitter:description"
+      content="See which countries have a public holiday on any selected date in 2026."
+    />
+    <meta name="twitter:image" content="https://worldholidaymap.com/social-card.svg" />
     <title>World Holiday Map</title>
   </head>
   <body>
@@ -53,6 +79,11 @@
           </div>
 
           <svg id="worldMap" role="img" aria-labelledby="mapTitle mapDesc"></svg>
+          <div class="map-toolbar" role="group" aria-label="Map controls">
+            <button id="zoomInButton" class="map-tool-button" type="button" aria-label="Zoom in">+</button>
+            <button id="zoomOutButton" class="map-tool-button" type="button" aria-label="Zoom out">-</button>
+            <button id="resetMapButton" class="map-tool-button map-tool-reset" type="button">Reset</button>
+          </div>
           <p id="mapTitle" class="sr-only">World map with highlighted countries</p>
           <p id="mapDesc" class="sr-only">
             Highlighted countries have at least one public holiday on the selected date.
@@ -76,6 +107,13 @@
             <div>
               <p class="eyebrow">Results</p>
               <h2 id="resultTitle">Countries</h2>
+            </div>
+            <div class="result-tools">
+              <label class="search-field">
+                <span class="sr-only">Search countries</span>
+                <input id="countrySearch" type="search" placeholder="Search country..." autocomplete="off" />
+              </label>
+              <button id="shareDateButton" class="share-button" type="button">Share date</button>
             </div>
           </div>
 

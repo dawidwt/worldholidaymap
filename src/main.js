@@ -40,9 +40,14 @@ const elements = {
   populationCount: document.querySelector('#populationCount'),
   populationQuality: document.querySelector('#populationQuality'),
   resultTitle: document.querySelector('#resultTitle'),
+  countrySearch: document.querySelector('#countrySearch'),
+  shareDateButton: document.querySelector('#shareDateButton'),
   holidayList: document.querySelector('#holidayList'),
   topDaysList: document.querySelector('#topDaysList'),
   rankingTabs: document.querySelectorAll('[data-ranking-mode]'),
+  zoomInButton: document.querySelector('#zoomInButton'),
+  zoomOutButton: document.querySelector('#zoomOutButton'),
+  resetMapButton: document.querySelector('#resetMapButton'),
   methodologyButton: document.querySelector('#methodologyButton'),
   methodologyPanel: document.querySelector('#methodologyPanel'),
   countryPanel: document.querySelector('#countryPanel'),
@@ -60,10 +65,17 @@ const state = {
   data: null,
   selectedDate: null,
   selectedCountryCode: null,
+  countrySearch: '',
   rankingMode: 'countries',
   pathsByCode: new Map(),
   rowsByCode: new Map(),
   holidaysByCountry: new Map(),
+  mapBaseViewBox: null,
+  mapViewBox: null,
+  mapZoom: 1,
+  mapDrag: null,
+  suppressCountryClick: false,
+  shareResetTimer: null,
 };
 
 init();
@@ -91,7 +103,9 @@ async function init() {
 }
 
 function renderMap() {
-  elements.worldMap.setAttribute('viewBox', world.viewBox);
+  state.mapBaseViewBox = parseViewBox(world.viewBox);
+  state.mapViewBox = { ...state.mapBaseViewBox };
+  elements.worldMap.setAttribute('viewBox', serializeViewBox(state.mapViewBox));
   elements.worldMap.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 
   for (const location of world.locations) {
@@ -115,7 +129,13 @@ function renderMap() {
     path.addEventListener('pointerleave', hideTooltip);
     path.addEventListener('focus', (event) => showTooltip(code, event));
     path.addEventListener('blur', hideTooltip);
-    path.addEventListener('click', () => openCountryPanel(code));
+    path.addEventListener('click', () => {
+      if (state.suppressCountryClick) {
+        return;
+      }
+
+      openCountryPanel(code);
+    });
     path.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
@@ -126,6 +146,8 @@ function renderMap() {
     elements.worldMap.append(path);
     state.pathsByCode.set(code, path);
   }
+
+  applyMapViewBox();
 }
 
 function buildCountryHolidayIndex() {
@@ -180,6 +202,19 @@ function wireControls() {
     setSelectedDate(isoFromDayIndex(Number(elements.dateSlider.value)));
   });
   elements.todayButton.addEventListener('click', () => setSelectedDate(getTodayForYear()));
+  elements.countrySearch.addEventListener('input', () => {
+    state.countrySearch = elements.countrySearch.value;
+    renderHolidayList();
+  });
+  elements.shareDateButton.addEventListener('click', shareSelectedDate);
+  elements.zoomInButton.addEventListener('click', () => zoomMap(1.45));
+  elements.zoomOutButton.addEventListener('click', () => zoomMap(1 / 1.45));
+  elements.resetMapButton.addEventListener('click', resetMapView);
+  elements.worldMap.addEventListener('pointerdown', startMapPan);
+  elements.worldMap.addEventListener('pointermove', moveMapPan);
+  elements.worldMap.addEventListener('pointerup', endMapPan);
+  elements.worldMap.addEventListener('pointercancel', endMapPan);
+  elements.worldMap.addEventListener('lostpointercapture', endMapPan);
   elements.countryPanelClose.addEventListener('click', closeCountryPanel);
   elements.methodologyButton.addEventListener('click', toggleMethodology);
   window.addEventListener('popstate', () => {
@@ -249,6 +284,10 @@ function renderHolidayList() {
   const countries = [...state.rowsByCode.values()].sort((a, b) => {
     return collator.compare(a.countryName, b.countryName);
   });
+  const searchQuery = normalizeSearch(state.countrySearch);
+  const visibleCountries = searchQuery
+    ? countries.filter((country) => countryMatchesSearch(country, searchQuery))
+    : countries;
   const holidayTotal = countries.reduce((sum, country) => sum + country.holidays.length, 0);
   const stats = getStatsForDate(state.selectedDate);
 
@@ -256,15 +295,20 @@ function renderHolidayList() {
   elements.holidayCount.textContent = String(holidayTotal);
   elements.populationCount.textContent = formatCompactNumber(stats.population);
   elements.populationQuality.textContent = formatPopulationCoverage(stats);
-  elements.resultTitle.textContent = countries.length
-    ? `${countries.length} ${pluralize(countries.length, 'country', 'countries')}`
-    : 'Countries';
-  elements.emptyState.hidden = countries.length > 0;
+  elements.resultTitle.textContent = getResultTitle(countries.length, visibleCountries.length, searchQuery);
+  elements.emptyState.textContent = searchQuery
+    ? 'No countries match this search for the selected date.'
+    : 'No public holidays are listed for this date in the dataset.';
+  elements.emptyState.hidden = visibleCountries.length > 0;
   elements.holidayList.replaceChildren();
+
+  if (!visibleCountries.length) {
+    return;
+  }
 
   const fragment = document.createDocumentFragment();
 
-  for (const country of countries) {
+  for (const country of visibleCountries) {
     const item = document.createElement('li');
     const names = country.holidays.map((holiday) => holiday.name).join(', ');
     const population = formatCountryPopulation(country);
@@ -301,6 +345,190 @@ function renderHolidayList() {
   }
 
   elements.holidayList.append(fragment);
+}
+
+function getResultTitle(totalCount, visibleCount, searchQuery) {
+  if (!totalCount) {
+    return 'Countries';
+  }
+
+  if (searchQuery) {
+    return `${visibleCount} of ${totalCount} ${pluralize(totalCount, 'country', 'countries')}`;
+  }
+
+  return `${totalCount} ${pluralize(totalCount, 'country', 'countries')}`;
+}
+
+function countryMatchesSearch(country, searchQuery) {
+  const text = normalizeSearch(
+    [country.countryName, country.countryCode, ...country.holidays.map((holiday) => holiday.name)].join(' '),
+  );
+
+  return text.includes(searchQuery);
+}
+
+function shareSelectedDate() {
+  const url = new URL(window.location.href);
+  url.searchParams.set('date', state.selectedDate);
+
+  writeClipboard(url.toString())
+    .then(() => setShareButtonLabel('Copied'))
+    .catch(() => setShareButtonLabel('Copy failed'));
+}
+
+async function writeClipboard(text) {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch {
+      // Fall through to the selection-based copy path.
+    }
+  }
+
+  const field = document.createElement('textarea');
+  field.value = text;
+  field.setAttribute('readonly', '');
+  field.className = 'clipboard-fallback';
+  document.body.append(field);
+  field.focus();
+  field.select();
+
+  try {
+    const copied = document.execCommand('copy');
+
+    if (!copied) {
+      throw new Error('Copy command failed');
+    }
+  } finally {
+    field.remove();
+  }
+}
+
+function setShareButtonLabel(label) {
+  window.clearTimeout(state.shareResetTimer);
+  elements.shareDateButton.textContent = label;
+  state.shareResetTimer = window.setTimeout(() => {
+    elements.shareDateButton.textContent = 'Share date';
+  }, 1600);
+}
+
+function zoomMap(factor) {
+  if (!state.mapBaseViewBox || !state.mapViewBox) {
+    return;
+  }
+
+  const nextZoom = clamp(state.mapZoom * factor, 1, 5);
+  const centerX = state.mapViewBox.x + state.mapViewBox.width / 2;
+  const centerY = state.mapViewBox.y + state.mapViewBox.height / 2;
+  const width = state.mapBaseViewBox.width / nextZoom;
+  const height = state.mapBaseViewBox.height / nextZoom;
+
+  state.mapZoom = nextZoom;
+  state.mapViewBox = clampViewBox({
+    x: centerX - width / 2,
+    y: centerY - height / 2,
+    width,
+    height,
+  });
+  applyMapViewBox();
+}
+
+function resetMapView() {
+  state.mapZoom = 1;
+  state.mapViewBox = { ...state.mapBaseViewBox };
+  applyMapViewBox();
+}
+
+function startMapPan(event) {
+  if (event.button !== 0 || state.mapZoom <= 1 || !state.mapViewBox) {
+    return;
+  }
+
+  state.mapDrag = {
+    pointerId: event.pointerId,
+    startX: event.clientX,
+    startY: event.clientY,
+    moved: false,
+    viewBox: { ...state.mapViewBox },
+  };
+  elements.worldMap.setPointerCapture(event.pointerId);
+  elements.worldMap.classList.add('is-panning');
+}
+
+function moveMapPan(event) {
+  if (!state.mapDrag || event.pointerId !== state.mapDrag.pointerId) {
+    return;
+  }
+
+  const rect = elements.worldMap.getBoundingClientRect();
+  const dx = ((event.clientX - state.mapDrag.startX) / rect.width) * state.mapDrag.viewBox.width;
+  const dy = ((event.clientY - state.mapDrag.startY) / rect.height) * state.mapDrag.viewBox.height;
+
+  if (Math.abs(event.clientX - state.mapDrag.startX) > 4 || Math.abs(event.clientY - state.mapDrag.startY) > 4) {
+    state.mapDrag.moved = true;
+  }
+
+  state.mapViewBox = clampViewBox({
+    ...state.mapDrag.viewBox,
+    x: state.mapDrag.viewBox.x - dx,
+    y: state.mapDrag.viewBox.y - dy,
+  });
+  applyMapViewBox();
+}
+
+function endMapPan(event) {
+  if (!state.mapDrag || event.pointerId !== state.mapDrag.pointerId) {
+    return;
+  }
+
+  if (state.mapDrag.moved) {
+    state.suppressCountryClick = true;
+    window.setTimeout(() => {
+      state.suppressCountryClick = false;
+    }, 0);
+  }
+
+  state.mapDrag = null;
+  elements.worldMap.classList.remove('is-panning');
+
+  if (elements.worldMap.hasPointerCapture(event.pointerId)) {
+    elements.worldMap.releasePointerCapture(event.pointerId);
+  }
+}
+
+function applyMapViewBox() {
+  elements.worldMap.setAttribute('viewBox', serializeViewBox(state.mapViewBox));
+  elements.worldMap.classList.toggle('is-zoomed', state.mapZoom > 1);
+  elements.zoomOutButton.disabled = state.mapZoom <= 1;
+  elements.resetMapButton.disabled = state.mapZoom <= 1;
+  elements.zoomInButton.disabled = state.mapZoom >= 5;
+}
+
+function clampViewBox(viewBox) {
+  const base = state.mapBaseViewBox;
+  const x = clamp(viewBox.x, base.x, base.x + base.width - viewBox.width);
+  const y = clamp(viewBox.y, base.y, base.y + base.height - viewBox.height);
+
+  return {
+    ...viewBox,
+    x,
+    y,
+  };
+}
+
+function parseViewBox(value) {
+  const [x, y, width, height] = value.split(/\s+/).map(Number);
+
+  return { x, y, width, height };
+}
+
+function serializeViewBox(viewBox) {
+  return `${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}`;
+}
+
+function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
 }
 
 function renderSource() {
@@ -596,6 +824,14 @@ function formatPopulationCoverage(stats) {
   }
 
   return `based on ${stats.populationCountryCount}/${stats.countryCount} countries`;
+}
+
+function normalizeSearch(value) {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
 }
 
 function dateFromIso(iso) {

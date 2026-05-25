@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="World Holiday Map preview">
+  <rect width="1200" height="630" fill="#ebe8dd"/>
+  <path d="M0 105h1200M0 210h1200M0 315h1200M0 420h1200M0 525h1200M150 0v630M300 0v630M450 0v630M600 0v630M750 0v630M900 0v630M1050 0v630" stroke="#c7c1b3" stroke-width="1" opacity=".55"/>
+  <g transform="translate(106 162)" fill="#bdb9ad" stroke="#fffdf7" stroke-width="4">
+    <path d="M93 113c29-54 82-81 157-81 46 0 86 12 119 36-42 7-73 25-92 54 43 8 73 38 73 78 0 76-69 124-169 124-70 0-125-23-162-70 44 9 80-3 108-36-58-9-96-48-34-105Z"/>
+    <path d="M490 68c87-21 167-15 236 17 87 40 133 103 138 188-65-38-129-45-193-22 28 26 42 56 41 89-2 59-43 98-121 116-91 20-179 3-263-51 60-18 105-45 134-80-60-10-104-37-132-80-37-56 17-142 160-177Z"/>
+    <path d="M822 311c64-34 135-39 214-16 40 12 69 33 86 63-40-4-74 6-101 31 22 12 35 31 38 55 7 57-39 91-138 101-72 7-132-5-180-37 48-15 82-35 101-61-46-5-78-22-97-52-22-35 4-63 77-84Z"/>
+  </g>
+  <rect x="70" y="54" width="1060" height="522" fill="none" stroke="#24211d" stroke-width="3"/>
+  <text x="90" y="115" fill="#6a665d" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="0">PUBLIC HOLIDAYS 2026</text>
+  <text x="90" y="184" fill="#24211d" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="900" letter-spacing="0">World Holiday Map</text>
+  <text x="90" y="246" fill="#6a665d" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="700">See which countries have a public holiday on any selected date.</text>
+  <g transform="translate(90 448)">
+    <rect width="245" height="78" fill="#fffdf7" stroke="#c7c1b3"/>
+    <text x="24" y="34" fill="#9b4516" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="900">151</text>
+    <text x="24" y="58" fill="#6a665d" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="850">COUNTRIES</text>
+  </g>
+  <g transform="translate(354 448)">
+    <rect width="245" height="78" fill="#fffdf7" stroke="#c7c1b3"/>
+    <text x="24" y="34" fill="#9b4516" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="900">4.83B</text>
+    <text x="24" y="58" fill="#6a665d" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="850">PEOPLE ON HOLIDAY</text>
+  </g>
+  <text x="910" y="520" fill="#24211d" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="850">worldholidaymap.com</text>
+</svg>
