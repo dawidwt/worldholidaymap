@@ -1,0 +1,75 @@
+{
+  "source": {
+    "label": "REST Countries - population field",
+    "url": "https://restcountries.com/v3.1/alpha?codes=AX,AI,BQ,CX,CC,CK,GF,GP,GG,JE,MQ,YT,MS,RE,BL,SH,PM,SJ,TW,VA,WF,EH&fields=cca2,name,population",
+    "note": "Supplemental population values for map areas missing from the World Bank snapshot."
+  },
+  "countries": {
+    "AI": {
+      "population": 16010
+    },
+    "AX": {
+      "population": 30654
+    },
+    "BL": {
+      "population": 10562
+    },
+    "BQ": {
+      "population": 31980
+    },
+    "CC": {
+      "population": 593
+    },
+    "CK": {
+      "population": 15040
+    },
+    "CX": {
+      "population": 1692
+    },
+    "EH": {
+      "population": 600904
+    },
+    "GF": {
+      "population": 292354
+    },
+    "GG": {
+      "population": 64781
+    },
+    "GP": {
+      "population": 378561
+    },
+    "JE": {
+      "population": 103267
+    },
+    "MQ": {
+      "population": 349925
+    },
+    "MS": {
+      "population": 4386
+    },
+    "PM": {
+      "population": 5819
+    },
+    "RE": {
+      "population": 896175
+    },
+    "SH": {
+      "population": 5651
+    },
+    "SJ": {
+      "population": 2530
+    },
+    "TW": {
+      "population": 23317031
+    },
+    "VA": {
+      "population": 882
+    },
+    "WF": {
+      "population": 11620
+    },
+    "YT": {
+      "population": 320901
+    }
+  }
+}

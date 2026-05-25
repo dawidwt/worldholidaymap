@@ -1,0 +1,18 @@
+{
+  "name": "world-holiday-map",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "npm run data && vite build",
+    "data": "node scripts/generate-holidays.mjs",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@svg-maps/world": "^1.0.1",
+    "date-holidays": "^3.26.5",
+    "vite": "^6.3.5"
+  },
+  "devDependencies": {}
+}

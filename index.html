@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World Holiday Map</title>
+  </head>
+  <body>
+    <div id="app" class="app-shell">
+      <header class="topbar">
+        <div class="title-group">
+          <p class="eyebrow">Public holidays 2026</p>
+          <h1>World Holiday Map</h1>
+        </div>
+
+        <div class="controls" aria-label="Date controls">
+          <label class="field">
+            <span>Date</span>
+            <select id="dateSelect"></select>
+          </label>
+
+          <label class="field range-field">
+            <span>Day of year</span>
+            <input id="dateSlider" type="range" min="0" max="364" step="1" />
+          </label>
+
+          <button id="todayButton" class="today-button" type="button">Today</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="map-stage" aria-label="World map">
+          <div class="date-strip">
+            <div>
+              <p class="date-label">Selected date</p>
+              <p id="selectedDate" class="selected-date"></p>
+            </div>
+            <div class="stat-group" aria-live="polite">
+              <div>
+                <span id="countryCount" class="stat-number">0</span>
+                <span class="stat-label">countries</span>
+              </div>
+              <div>
+                <span id="holidayCount" class="stat-number">0</span>
+                <span class="stat-label">holidays</span>
+              </div>
+              <div class="population-stat">
+                <span id="populationCount" class="stat-number">0</span>
+                <span class="stat-label">people on holiday</span>
+                <span id="populationQuality" class="stat-note"></span>
+              </div>
+            </div>
+          </div>
+
+          <svg id="worldMap" role="img" aria-labelledby="mapTitle mapDesc"></svg>
+          <p id="mapTitle" class="sr-only">World map with highlighted countries</p>
+          <p id="mapDesc" class="sr-only">
+            Highlighted countries have at least one public holiday on the selected date.
+          </p>
+
+          <div id="tooltip" class="tooltip" role="status" hidden></div>
+
+          <aside id="countryPanel" class="country-panel" aria-live="polite" hidden>
+            <button id="countryPanelClose" class="panel-close" type="button" aria-label="Close country details">
+              ×
+            </button>
+            <p class="eyebrow">Country details</p>
+            <h2 id="countryPanelTitle">Country</h2>
+            <p id="countryPanelMeta" class="country-panel-meta"></p>
+            <ol id="countryPanelList" class="country-panel-list"></ol>
+          </aside>
+        </section>
+
+        <section class="results-panel" aria-label="Holiday results">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Results</p>
+              <h2 id="resultTitle">Countries</h2>
+            </div>
+          </div>
+
+          <div id="emptyState" class="empty-state" hidden>
+            No public holidays are listed for this date in the dataset.
+          </div>
+
+          <ol id="holidayList" class="holiday-list"></ol>
+
+          <section class="ranking-panel" aria-labelledby="rankingTitle">
+            <div class="ranking-head">
+              <div>
+                <p class="eyebrow">Global ranking</p>
+                <h2 id="rankingTitle">Top 10 holiday days</h2>
+              </div>
+              <div class="ranking-tabs" role="tablist" aria-label="Ranking basis">
+                <button class="ranking-tab is-active" type="button" data-ranking-mode="countries" aria-selected="true">
+                  Most countries
+                </button>
+                <button class="ranking-tab" type="button" data-ranking-mode="population" aria-selected="false">
+                  Most people
+                </button>
+              </div>
+            </div>
+            <ol id="topDaysList" class="top-days-list"></ol>
+          </section>
+
+          <footer class="source-note">
+            <span>Data: date-holidays.</span>
+            <span>Population: World Bank + REST Countries fallback.</span>
+            <span>Reference:</span>
+            <a id="sourceLink" href="https://www.timeanddate.com/holidays/" target="_blank" rel="noreferrer">
+              Timeanddate - Holidays Worldwide
+            </a>
+          </footer>
+
+          <section class="methodology-section" aria-label="Methodology">
+            <button
+              id="methodologyButton"
+              class="methodology-button"
+              type="button"
+              aria-expanded="false"
+              aria-controls="methodologyPanel"
+            >
+              Show methodology
+            </button>
+            <div id="methodologyPanel" class="methodology-panel" hidden>
+              <p>
+                The map uses the generated 2026 public-holiday dataset in this project. Holidays are
+                calculated with the <strong>date-holidays</strong> library and filtered to entries marked
+                as <strong>public</strong>. Timeanddate - Holidays Worldwide is linked as a reference for
+                manual comparison, not scraped live by the app.
+              </p>
+              <p>
+                Population totals are approximate. For each selected date, the app sums country-level
+                World Bank <strong>SP.POP.TOTL</strong> population estimates for highlighted countries
+                and uses REST Countries population values only for map areas missing from the World Bank
+                snapshot. It does not account for regional holidays, partial observance, subnational
+                populations, or people working despite a public holiday.
+              </p>
+              <p>
+                Rankings can be sorted by either the number of countries with a public holiday or by the
+                summed population estimate for those countries. Countries and territories without holiday
+                coverage are omitted from the relevant totals.
+              </p>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

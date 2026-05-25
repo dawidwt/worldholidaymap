@@ -1,0 +1,1462 @@
+{
+  "source": {
+    "label": "World Bank - Population, total (SP.POP.TOTL)",
+    "url": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&per_page=20000",
+    "lastUpdated": "2026-04-08"
+  },
+  "generatedAt": "2026-05-01T15:27:22.933Z",
+  "countries": {
+    "AD": {
+      "code": "AD",
+      "name": "Andorra",
+      "year": 2024,
+      "population": 81938
+    },
+    "AE": {
+      "code": "AE",
+      "name": "United Arab Emirates",
+      "year": 2024,
+      "population": 10986400
+    },
+    "AF": {
+      "code": "AF",
+      "name": "Afghanistan",
+      "year": 2024,
+      "population": 42647492
+    },
+    "AG": {
+      "code": "AG",
+      "name": "Antigua and Barbuda",
+      "year": 2024,
+      "population": 93772
+    },
+    "AL": {
+      "code": "AL",
+      "name": "Albania",
+      "year": 2024,
+      "population": 2377128
+    },
+    "AM": {
+      "code": "AM",
+      "name": "Armenia",
+      "year": 2024,
+      "population": 3033500
+    },
+    "AO": {
+      "code": "AO",
+      "name": "Angola",
+      "year": 2024,
+      "population": 37885849
+    },
+    "AR": {
+      "code": "AR",
+      "name": "Argentina",
+      "year": 2024,
+      "population": 45696159
+    },
+    "AS": {
+      "code": "AS",
+      "name": "American Samoa",
+      "year": 2024,
+      "population": 46765
+    },
+    "AT": {
+      "code": "AT",
+      "name": "Austria",
+      "year": 2024,
+      "population": 9177982
+    },
+    "AU": {
+      "code": "AU",
+      "name": "Australia",
+      "year": 2024,
+      "population": 27196812
+    },
+    "AW": {
+      "code": "AW",
+      "name": "Aruba",
+      "year": 2024,
+      "population": 107995
+    },
+    "AZ": {
+      "code": "AZ",
+      "name": "Azerbaijan",
+      "year": 2024,
+      "population": 10202830
+    },
+    "BA": {
+      "code": "BA",
+      "name": "Bosnia and Herzegovina",
+      "year": 2024,
+      "population": 3164253
+    },
+    "BB": {
+      "code": "BB",
+      "name": "Barbados",
+      "year": 2024,
+      "population": 282467
+    },
+    "BD": {
+      "code": "BD",
+      "name": "Bangladesh",
+      "year": 2024,
+      "population": 173562364
+    },
+    "BE": {
+      "code": "BE",
+      "name": "Belgium",
+      "year": 2024,
+      "population": 11858610
+    },
+    "BF": {
+      "code": "BF",
+      "name": "Burkina Faso",
+      "year": 2024,
+      "population": 23548781
+    },
+    "BG": {
+      "code": "BG",
+      "name": "Bulgaria",
+      "year": 2024,
+      "population": 6441421
+    },
+    "BH": {
+      "code": "BH",
+      "name": "Bahrain",
+      "year": 2024,
+      "population": 1588670
+    },
+    "BI": {
+      "code": "BI",
+      "name": "Burundi",
+      "year": 2024,
+      "population": 14047786
+    },
+    "BJ": {
+      "code": "BJ",
+      "name": "Benin",
+      "year": 2024,
+      "population": 14462724
+    },
+    "BM": {
+      "code": "BM",
+      "name": "Bermuda",
+      "year": 2024,
+      "population": 64636
+    },
+    "BN": {
+      "code": "BN",
+      "name": "Brunei Darussalam",
+      "year": 2024,
+      "population": 462721
+    },
+    "BO": {
+      "code": "BO",
+      "name": "Bolivia",
+      "year": 2024,
+      "population": 12413315
+    },
+    "BR": {
+      "code": "BR",
+      "name": "Brazil",
+      "year": 2024,
+      "population": 211998573
+    },
+    "BS": {
+      "code": "BS",
+      "name": "Bahamas, The",
+      "year": 2024,
+      "population": 401283
+    },
+    "BT": {
+      "code": "BT",
+      "name": "Bhutan",
+      "year": 2024,
+      "population": 791524
+    },
+    "BW": {
+      "code": "BW",
+      "name": "Botswana",
+      "year": 2024,
+      "population": 2521139
+    },
+    "BY": {
+      "code": "BY",
+      "name": "Belarus",
+      "year": 2024,
+      "population": 9132629
+    },
+    "BZ": {
+      "code": "BZ",
+      "name": "Belize",
+      "year": 2024,
+      "population": 417072
+    },
+    "CA": {
+      "code": "CA",
+      "name": "Canada",
+      "year": 2024,
+      "population": 41288599
+    },
+    "CD": {
+      "code": "CD",
+      "name": "Congo, Dem. Rep.",
+      "year": 2024,
+      "population": 109276265
+    },
+    "CF": {
+      "code": "CF",
+      "name": "Central African Republic",
+      "year": 2024,
+      "population": 5330690
+    },
+    "CG": {
+      "code": "CG",
+      "name": "Congo, Rep.",
+      "year": 2024,
+      "population": 6332961
+    },
+    "CH": {
+      "code": "CH",
+      "name": "Switzerland",
+      "year": 2024,
+      "population": 9005582
+    },
+    "CI": {
+      "code": "CI",
+      "name": "Cote d'Ivoire",
+      "year": 2024,
+      "population": 31934230
+    },
+    "CL": {
+      "code": "CL",
+      "name": "Chile",
+      "year": 2024,
+      "population": 19764771
+    },
+    "CM": {
+      "code": "CM",
+      "name": "Cameroon",
+      "year": 2024,
+      "population": 29123744
+    },
+    "CN": {
+      "code": "CN",
+      "name": "China",
+      "year": 2024,
+      "population": 1408975000
+    },
+    "CO": {
+      "code": "CO",
+      "name": "Colombia",
+      "year": 2024,
+      "population": 52886363
+    },
+    "CR": {
+      "code": "CR",
+      "name": "Costa Rica",
+      "year": 2024,
+      "population": 5129910
+    },
+    "CU": {
+      "code": "CU",
+      "name": "Cuba",
+      "year": 2024,
+      "population": 10979783
+    },
+    "CV": {
+      "code": "CV",
+      "name": "Cabo Verde",
+      "year": 2024,
+      "population": 524877
+    },
+    "CW": {
+      "code": "CW",
+      "name": "Curacao",
+      "year": 2024,
+      "population": 155967
+    },
+    "CY": {
+      "code": "CY",
+      "name": "Cyprus",
+      "year": 2024,
+      "population": 1358282
+    },
+    "CZ": {
+      "code": "CZ",
+      "name": "Czechia",
+      "year": 2024,
+      "population": 10905028
+    },
+    "DE": {
+      "code": "DE",
+      "name": "Germany",
+      "year": 2024,
+      "population": 83516593
+    },
+    "DJ": {
+      "code": "DJ",
+      "name": "Djibouti",
+      "year": 2024,
+      "population": 1168722
+    },
+    "DK": {
+      "code": "DK",
+      "name": "Denmark",
+      "year": 2024,
+      "population": 5976992
+    },
+    "DM": {
+      "code": "DM",
+      "name": "Dominica",
+      "year": 2024,
+      "population": 66205
+    },
+    "DO": {
+      "code": "DO",
+      "name": "Dominican Republic",
+      "year": 2024,
+      "population": 11427557
+    },
+    "DZ": {
+      "code": "DZ",
+      "name": "Algeria",
+      "year": 2024,
+      "population": 46814308
+    },
+    "EC": {
+      "code": "EC",
+      "name": "Ecuador",
+      "year": 2024,
+      "population": 18135478
+    },
+    "EE": {
+      "code": "EE",
+      "name": "Estonia",
+      "year": 2024,
+      "population": 1372341
+    },
+    "EG": {
+      "code": "EG",
+      "name": "Egypt, Arab Rep.",
+      "year": 2024,
+      "population": 116538258
+    },
+    "ER": {
+      "code": "ER",
+      "name": "Eritrea",
+      "year": 2024,
+      "population": 3535603
+    },
+    "ES": {
+      "code": "ES",
+      "name": "Spain",
+      "year": 2024,
+      "population": 48848840
+    },
+    "ET": {
+      "code": "ET",
+      "name": "Ethiopia",
+      "year": 2024,
+      "population": 132059767
+    },
+    "EU": {
+      "code": "EU",
+      "name": "European Union",
+      "year": 2024,
+      "population": 450228188
+    },
+    "FI": {
+      "code": "FI",
+      "name": "Finland",
+      "year": 2024,
+      "population": 5619911
+    },
+    "FJ": {
+      "code": "FJ",
+      "name": "Fiji",
+      "year": 2024,
+      "population": 928784
+    },
+    "FM": {
+      "code": "FM",
+      "name": "Micronesia, Fed. Sts.",
+      "year": 2024,
+      "population": 113160
+    },
+    "FO": {
+      "code": "FO",
+      "name": "Faroe Islands",
+      "year": 2024,
+      "population": 54681
+    },
+    "FR": {
+      "code": "FR",
+      "name": "France",
+      "year": 2024,
+      "population": 68551653
+    },
+    "GA": {
+      "code": "GA",
+      "name": "Gabon",
+      "year": 2024,
+      "population": 2538952
+    },
+    "GB": {
+      "code": "GB",
+      "name": "United Kingdom",
+      "year": 2024,
+      "population": 69226000
+    },
+    "GD": {
+      "code": "GD",
+      "name": "Grenada",
+      "year": 2024,
+      "population": 117207
+    },
+    "GE": {
+      "code": "GE",
+      "name": "Georgia",
+      "year": 2024,
+      "population": 3699557
+    },
+    "GH": {
+      "code": "GH",
+      "name": "Ghana",
+      "year": 2024,
+      "population": 34427414
+    },
+    "GI": {
+      "code": "GI",
+      "name": "Gibraltar",
+      "year": 2024,
+      "population": 39329
+    },
+    "GL": {
+      "code": "GL",
+      "name": "Greenland",
+      "year": 2024,
+      "population": 56836
+    },
+    "GM": {
+      "code": "GM",
+      "name": "Gambia, The",
+      "year": 2024,
+      "population": 2759988
+    },
+    "GN": {
+      "code": "GN",
+      "name": "Guinea",
+      "year": 2024,
+      "population": 14754785
+    },
+    "GQ": {
+      "code": "GQ",
+      "name": "Equatorial Guinea",
+      "year": 2024,
+      "population": 1892516
+    },
+    "GR": {
+      "code": "GR",
+      "name": "Greece",
+      "year": 2024,
+      "population": 10405134
+    },
+    "GT": {
+      "code": "GT",
+      "name": "Guatemala",
+      "year": 2024,
+      "population": 18406359
+    },
+    "GU": {
+      "code": "GU",
+      "name": "Guam",
+      "year": 2024,
+      "population": 167777
+    },
+    "GW": {
+      "code": "GW",
+      "name": "Guinea-Bissau",
+      "year": 2024,
+      "population": 2201352
+    },
+    "GY": {
+      "code": "GY",
+      "name": "Guyana",
+      "year": 2024,
+      "population": 831087
+    },
+    "HK": {
+      "code": "HK",
+      "name": "Hong Kong SAR, China",
+      "year": 2024,
+      "population": 7524100
+    },
+    "HN": {
+      "code": "HN",
+      "name": "Honduras",
+      "year": 2024,
+      "population": 10825703
+    },
+    "HR": {
+      "code": "HR",
+      "name": "Croatia",
+      "year": 2024,
+      "population": 3866200
+    },
+    "HT": {
+      "code": "HT",
+      "name": "Haiti",
+      "year": 2024,
+      "population": 11772557
+    },
+    "HU": {
+      "code": "HU",
+      "name": "Hungary",
+      "year": 2024,
+      "population": 9562065
+    },
+    "ID": {
+      "code": "ID",
+      "name": "Indonesia",
+      "year": 2024,
+      "population": 283487931
+    },
+    "IE": {
+      "code": "IE",
+      "name": "Ireland",
+      "year": 2024,
+      "population": 5395790
+    },
+    "IL": {
+      "code": "IL",
+      "name": "Israel",
+      "year": 2024,
+      "population": 9974400
+    },
+    "IM": {
+      "code": "IM",
+      "name": "Isle of Man",
+      "year": 2024,
+      "population": 84160
+    },
+    "IN": {
+      "code": "IN",
+      "name": "India",
+      "year": 2024,
+      "population": 1450935791
+    },
+    "IQ": {
+      "code": "IQ",
+      "name": "Iraq",
+      "year": 2024,
+      "population": 46042015
+    },
+    "IR": {
+      "code": "IR",
+      "name": "Iran, Islamic Rep.",
+      "year": 2024,
+      "population": 91567738
+    },
+    "IS": {
+      "code": "IS",
+      "name": "Iceland",
+      "year": 2024,
+      "population": 386506
+    },
+    "IT": {
+      "code": "IT",
+      "name": "Italy",
+      "year": 2024,
+      "population": 58952704
+    },
+    "JG": {
+      "code": "JG",
+      "name": "Channel Islands",
+      "year": 2024,
+      "population": 168126
+    },
+    "JM": {
+      "code": "JM",
+      "name": "Jamaica",
+      "year": 2024,
+      "population": 2839175
+    },
+    "JO": {
+      "code": "JO",
+      "name": "Jordan",
+      "year": 2024,
+      "population": 11552876
+    },
+    "JP": {
+      "code": "JP",
+      "name": "Japan",
+      "year": 2024,
+      "population": 123975371
+    },
+    "KE": {
+      "code": "KE",
+      "name": "Kenya",
+      "year": 2024,
+      "population": 56432944
+    },
+    "KG": {
+      "code": "KG",
+      "name": "Kyrgyz Republic",
+      "year": 2024,
+      "population": 7221868
+    },
+    "KH": {
+      "code": "KH",
+      "name": "Cambodia",
+      "year": 2024,
+      "population": 17638801
+    },
+    "KI": {
+      "code": "KI",
+      "name": "Kiribati",
+      "year": 2024,
+      "population": 134518
+    },
+    "KM": {
+      "code": "KM",
+      "name": "Comoros",
+      "year": 2024,
+      "population": 866628
+    },
+    "KN": {
+      "code": "KN",
+      "name": "St. Kitts and Nevis",
+      "year": 2024,
+      "population": 46843
+    },
+    "KP": {
+      "code": "KP",
+      "name": "Korea, Dem. People's Rep.",
+      "year": 2024,
+      "population": 26498823
+    },
+    "KR": {
+      "code": "KR",
+      "name": "Korea, Rep.",
+      "year": 2024,
+      "population": 51751065
+    },
+    "KW": {
+      "code": "KW",
+      "name": "Kuwait",
+      "year": 2024,
+      "population": 4897263
+    },
+    "KY": {
+      "code": "KY",
+      "name": "Cayman Islands",
+      "year": 2024,
+      "population": 74457
+    },
+    "KZ": {
+      "code": "KZ",
+      "name": "Kazakhstan",
+      "year": 2024,
+      "population": 20592571
+    },
+    "LA": {
+      "code": "LA",
+      "name": "Lao PDR",
+      "year": 2024,
+      "population": 7769819
+    },
+    "LB": {
+      "code": "LB",
+      "name": "Lebanon",
+      "year": 2024,
+      "population": 5805962
+    },
+    "LC": {
+      "code": "LC",
+      "name": "St. Lucia",
+      "year": 2024,
+      "population": 179744
+    },
+    "LI": {
+      "code": "LI",
+      "name": "Liechtenstein",
+      "year": 2024,
+      "population": 40450
+    },
+    "LK": {
+      "code": "LK",
+      "name": "Sri Lanka",
+      "year": 2024,
+      "population": 21916000
+    },
+    "LR": {
+      "code": "LR",
+      "name": "Liberia",
+      "year": 2024,
+      "population": 5612817
+    },
+    "LS": {
+      "code": "LS",
+      "name": "Lesotho",
+      "year": 2024,
+      "population": 2337423
+    },
+    "LT": {
+      "code": "LT",
+      "name": "Lithuania",
+      "year": 2024,
+      "population": 2888278
+    },
+    "LU": {
+      "code": "LU",
+      "name": "Luxembourg",
+      "year": 2024,
+      "population": 677012
+    },
+    "LV": {
+      "code": "LV",
+      "name": "Latvia",
+      "year": 2024,
+      "population": 1866124
+    },
+    "LY": {
+      "code": "LY",
+      "name": "Libya",
+      "year": 2024,
+      "population": 7381023
+    },
+    "MA": {
+      "code": "MA",
+      "name": "Morocco",
+      "year": 2024,
+      "population": 38081173
+    },
+    "MC": {
+      "code": "MC",
+      "name": "Monaco",
+      "year": 2024,
+      "population": 38631
+    },
+    "MD": {
+      "code": "MD",
+      "name": "Moldova",
+      "year": 2024,
+      "population": 2402306
+    },
+    "ME": {
+      "code": "ME",
+      "name": "Montenegro",
+      "year": 2024,
+      "population": 623525
+    },
+    "MF": {
+      "code": "MF",
+      "name": "St. Martin (French part)",
+      "year": 2024,
+      "population": 26129
+    },
+    "MG": {
+      "code": "MG",
+      "name": "Madagascar",
+      "year": 2024,
+      "population": 31964956
+    },
+    "MH": {
+      "code": "MH",
+      "name": "Marshall Islands",
+      "year": 2024,
+      "population": 37548
+    },
+    "MK": {
+      "code": "MK",
+      "name": "North Macedonia",
+      "year": 2024,
+      "population": 1824359
+    },
+    "ML": {
+      "code": "ML",
+      "name": "Mali",
+      "year": 2024,
+      "population": 24478595
+    },
+    "MM": {
+      "code": "MM",
+      "name": "Myanmar",
+      "year": 2024,
+      "population": 54500091
+    },
+    "MN": {
+      "code": "MN",
+      "name": "Mongolia",
+      "year": 2024,
+      "population": 3524788
+    },
+    "MO": {
+      "code": "MO",
+      "name": "Macao SAR, China",
+      "year": 2024,
+      "population": 687000
+    },
+    "MP": {
+      "code": "MP",
+      "name": "Northern Mariana Islands",
+      "year": 2024,
+      "population": 44278
+    },
+    "MR": {
+      "code": "MR",
+      "name": "Mauritania",
+      "year": 2024,
+      "population": 5169395
+    },
+    "MT": {
+      "code": "MT",
+      "name": "Malta",
+      "year": 2024,
+      "population": 568847
+    },
+    "MU": {
+      "code": "MU",
+      "name": "Mauritius",
+      "year": 2024,
+      "population": 1245779
+    },
+    "MV": {
+      "code": "MV",
+      "name": "Maldives",
+      "year": 2024,
+      "population": 527799
+    },
+    "MW": {
+      "code": "MW",
+      "name": "Malawi",
+      "year": 2024,
+      "population": 21655286
+    },
+    "MX": {
+      "code": "MX",
+      "name": "Mexico",
+      "year": 2024,
+      "population": 130861007
+    },
+    "MY": {
+      "code": "MY",
+      "name": "Malaysia",
+      "year": 2024,
+      "population": 35557673
+    },
+    "MZ": {
+      "code": "MZ",
+      "name": "Mozambique",
+      "year": 2024,
+      "population": 34631766
+    },
+    "NA": {
+      "code": "NA",
+      "name": "Namibia",
+      "year": 2024,
+      "population": 3030131
+    },
+    "NC": {
+      "code": "NC",
+      "name": "New Caledonia",
+      "year": 2024,
+      "population": 292639
+    },
+    "NE": {
+      "code": "NE",
+      "name": "Niger",
+      "year": 2024,
+      "population": 27032412
+    },
+    "NG": {
+      "code": "NG",
+      "name": "Nigeria",
+      "year": 2024,
+      "population": 232679478
+    },
+    "NI": {
+      "code": "NI",
+      "name": "Nicaragua",
+      "year": 2024,
+      "population": 6916140
+    },
+    "NL": {
+      "code": "NL",
+      "name": "Netherlands",
+      "year": 2024,
+      "population": 17993485
+    },
+    "NO": {
+      "code": "NO",
+      "name": "Norway",
+      "year": 2024,
+      "population": 5572279
+    },
+    "NP": {
+      "code": "NP",
+      "name": "Nepal",
+      "year": 2024,
+      "population": 29651054
+    },
+    "NR": {
+      "code": "NR",
+      "name": "Nauru",
+      "year": 2024,
+      "population": 11947
+    },
+    "NZ": {
+      "code": "NZ",
+      "name": "New Zealand",
+      "year": 2024,
+      "population": 5287500
+    },
+    "OE": {
+      "code": "OE",
+      "name": "OECD members",
+      "year": 2024,
+      "population": 1396877448
+    },
+    "OM": {
+      "code": "OM",
+      "name": "Oman",
+      "year": 2024,
+      "population": 5281538
+    },
+    "PA": {
+      "code": "PA",
+      "name": "Panama",
+      "year": 2024,
+      "population": 4515577
+    },
+    "PE": {
+      "code": "PE",
+      "name": "Peru",
+      "year": 2024,
+      "population": 34217848
+    },
+    "PF": {
+      "code": "PF",
+      "name": "French Polynesia",
+      "year": 2024,
+      "population": 281807
+    },
+    "PG": {
+      "code": "PG",
+      "name": "Papua New Guinea",
+      "year": 2024,
+      "population": 10576502
+    },
+    "PH": {
+      "code": "PH",
+      "name": "Philippines",
+      "year": 2024,
+      "population": 115843670
+    },
+    "PK": {
+      "code": "PK",
+      "name": "Pakistan",
+      "year": 2024,
+      "population": 251269164
+    },
+    "PL": {
+      "code": "PL",
+      "name": "Poland",
+      "year": 2024,
+      "population": 36559233
+    },
+    "PR": {
+      "code": "PR",
+      "name": "Puerto Rico (US)",
+      "year": 2024,
+      "population": 3203295
+    },
+    "PS": {
+      "code": "PS",
+      "name": "West Bank and Gaza",
+      "year": 2024,
+      "population": 5289152
+    },
+    "PT": {
+      "code": "PT",
+      "name": "Portugal",
+      "year": 2024,
+      "population": 10694681
+    },
+    "PW": {
+      "code": "PW",
+      "name": "Palau",
+      "year": 2024,
+      "population": 17695
+    },
+    "PY": {
+      "code": "PY",
+      "name": "Paraguay",
+      "year": 2024,
+      "population": 6929153
+    },
+    "QA": {
+      "code": "QA",
+      "name": "Qatar",
+      "year": 2024,
+      "population": 2857822
+    },
+    "RO": {
+      "code": "RO",
+      "name": "Romania",
+      "year": 2024,
+      "population": 19051804
+    },
+    "RS": {
+      "code": "RS",
+      "name": "Serbia",
+      "year": 2024,
+      "population": 6586476
+    },
+    "RU": {
+      "code": "RU",
+      "name": "Russian Federation",
+      "year": 2024,
+      "population": 143533851
+    },
+    "RW": {
+      "code": "RW",
+      "name": "Rwanda",
+      "year": 2024,
+      "population": 14256567
+    },
+    "SA": {
+      "code": "SA",
+      "name": "Saudi Arabia",
+      "year": 2024,
+      "population": 35300280
+    },
+    "SB": {
+      "code": "SB",
+      "name": "Solomon Islands",
+      "year": 2024,
+      "population": 819198
+    },
+    "SC": {
+      "code": "SC",
+      "name": "Seychelles",
+      "year": 2024,
+      "population": 121354
+    },
+    "SD": {
+      "code": "SD",
+      "name": "Sudan",
+      "year": 2024,
+      "population": 50448963
+    },
+    "SE": {
+      "code": "SE",
+      "name": "Sweden",
+      "year": 2024,
+      "population": 10569709
+    },
+    "SG": {
+      "code": "SG",
+      "name": "Singapore",
+      "year": 2024,
+      "population": 6036860
+    },
+    "SI": {
+      "code": "SI",
+      "name": "Slovenia",
+      "year": 2024,
+      "population": 2127400
+    },
+    "SK": {
+      "code": "SK",
+      "name": "Slovak Republic",
+      "year": 2024,
+      "population": 5422069
+    },
+    "SL": {
+      "code": "SL",
+      "name": "Sierra Leone",
+      "year": 2024,
+      "population": 8642022
+    },
+    "SM": {
+      "code": "SM",
+      "name": "San Marino",
+      "year": 2024,
+      "population": 33977
+    },
+    "SN": {
+      "code": "SN",
+      "name": "Senegal",
+      "year": 2024,
+      "population": 18501984
+    },
+    "SO": {
+      "code": "SO",
+      "name": "Somalia, Fed. Rep.",
+      "year": 2024,
+      "population": 19009151
+    },
+    "SR": {
+      "code": "SR",
+      "name": "Suriname",
+      "year": 2024,
+      "population": 634431
+    },
+    "SS": {
+      "code": "SS",
+      "name": "South Sudan",
+      "year": 2024,
+      "population": 11943408
+    },
+    "ST": {
+      "code": "ST",
+      "name": "Sao Tome and Principe",
+      "year": 2024,
+      "population": 235536
+    },
+    "SV": {
+      "code": "SV",
+      "name": "El Salvador",
+      "year": 2024,
+      "population": 6338193
+    },
+    "SX": {
+      "code": "SX",
+      "name": "Sint Maarten (Dutch part)",
+      "year": 2024,
+      "population": 43350
+    },
+    "SY": {
+      "code": "SY",
+      "name": "Syrian Arab Republic",
+      "year": 2024,
+      "population": 24672760
+    },
+    "SZ": {
+      "code": "SZ",
+      "name": "Eswatini",
+      "year": 2024,
+      "population": 1242822
+    },
+    "TC": {
+      "code": "TC",
+      "name": "Turks and Caicos Islands",
+      "year": 2024,
+      "population": 46535
+    },
+    "TD": {
+      "code": "TD",
+      "name": "Chad",
+      "year": 2024,
+      "population": 20299123
+    },
+    "TG": {
+      "code": "TG",
+      "name": "Togo",
+      "year": 2024,
+      "population": 9515236
+    },
+    "TH": {
+      "code": "TH",
+      "name": "Thailand",
+      "year": 2024,
+      "population": 71668011
+    },
+    "TJ": {
+      "code": "TJ",
+      "name": "Tajikistan",
+      "year": 2024,
+      "population": 10590927
+    },
+    "TL": {
+      "code": "TL",
+      "name": "Timor-Leste",
+      "year": 2024,
+      "population": 1400638
+    },
+    "TM": {
+      "code": "TM",
+      "name": "Turkmenistan",
+      "year": 2024,
+      "population": 7494498
+    },
+    "TN": {
+      "code": "TN",
+      "name": "Tunisia",
+      "year": 2024,
+      "population": 12277109
+    },
+    "TO": {
+      "code": "TO",
+      "name": "Tonga",
+      "year": 2024,
+      "population": 104175
+    },
+    "TR": {
+      "code": "TR",
+      "name": "Turkiye",
+      "year": 2024,
+      "population": 85518661
+    },
+    "TT": {
+      "code": "TT",
+      "name": "Trinidad and Tobago",
+      "year": 2024,
+      "population": 1368333
+    },
+    "TV": {
+      "code": "TV",
+      "name": "Tuvalu",
+      "year": 2024,
+      "population": 9646
+    },
+    "TZ": {
+      "code": "TZ",
+      "name": "Tanzania",
+      "year": 2024,
+      "population": 68560157
+    },
+    "UA": {
+      "code": "UA",
+      "name": "Ukraine",
+      "year": 2024,
+      "population": 37860221
+    },
+    "UG": {
+      "code": "UG",
+      "name": "Uganda",
+      "year": 2024,
+      "population": 50015092
+    },
+    "US": {
+      "code": "US",
+      "name": "United States",
+      "year": 2024,
+      "population": 340110988
+    },
+    "UY": {
+      "code": "UY",
+      "name": "Uruguay",
+      "year": 2024,
+      "population": 3386588
+    },
+    "UZ": {
+      "code": "UZ",
+      "name": "Uzbekistan",
+      "year": 2024,
+      "population": 36361859
+    },
+    "VC": {
+      "code": "VC",
+      "name": "St. Vincent and the Grenadines",
+      "year": 2024,
+      "population": 100616
+    },
+    "VE": {
+      "code": "VE",
+      "name": "Venezuela, RB",
+      "year": 2024,
+      "population": 28405543
+    },
+    "VG": {
+      "code": "VG",
+      "name": "British Virgin Islands",
+      "year": 2024,
+      "population": 39471
+    },
+    "VI": {
+      "code": "VI",
+      "name": "Virgin Islands (U.S.)",
+      "year": 2024,
+      "population": 104377
+    },
+    "VN": {
+      "code": "VN",
+      "name": "Viet Nam",
+      "year": 2024,
+      "population": 100987686
+    },
+    "VU": {
+      "code": "VU",
+      "name": "Vanuatu",
+      "year": 2024,
+      "population": 327777
+    },
+    "WS": {
+      "code": "WS",
+      "name": "Samoa",
+      "year": 2024,
+      "population": 218019
+    },
+    "XC": {
+      "code": "XC",
+      "name": "Euro area",
+      "year": 2024,
+      "population": 351161936
+    },
+    "XD": {
+      "code": "XD",
+      "name": "High income",
+      "year": 2024,
+      "population": 1417841927
+    },
+    "XE": {
+      "code": "XE",
+      "name": "Heavily indebted poor countries (HIPC)",
+      "year": 2024,
+      "population": 941413026
+    },
+    "XF": {
+      "code": "XF",
+      "name": "IBRD only",
+      "year": 2024,
+      "population": 4979421568
+    },
+    "XG": {
+      "code": "XG",
+      "name": "IDA total",
+      "year": 2024,
+      "population": 1946800545
+    },
+    "XH": {
+      "code": "XH",
+      "name": "IDA blend",
+      "year": 2024,
+      "population": 676957651
+    },
+    "XI": {
+      "code": "XI",
+      "name": "IDA only",
+      "year": 2024,
+      "population": 1269842894
+    },
+    "XJ": {
+      "code": "XJ",
+      "name": "Latin America & Caribbean (excluding high income)",
+      "year": 2024,
+      "population": 594158638
+    },
+    "XK": {
+      "code": "XK",
+      "name": "Kosovo",
+      "year": 2024,
+      "population": 1594353
+    },
+    "XL": {
+      "code": "XL",
+      "name": "Least developed countries: UN classification",
+      "year": 2024,
+      "population": 1187777591
+    },
+    "XM": {
+      "code": "XM",
+      "name": "Low income",
+      "year": 2024,
+      "population": 624608098
+    },
+    "XN": {
+      "code": "XN",
+      "name": "Lower middle income",
+      "year": 2024,
+      "population": 3120980912
+    },
+    "XO": {
+      "code": "XO",
+      "name": "Low & middle income",
+      "year": 2024,
+      "population": 6563501708
+    },
+    "XP": {
+      "code": "XP",
+      "name": "Middle income",
+      "year": 2024,
+      "population": 5938893610
+    },
+    "XQ": {
+      "code": "XQ",
+      "name": "Middle East, North Africa, Afghanistan & Pakistan (excluding high income)",
+      "year": 2024,
+      "population": 741690916
+    },
+    "XT": {
+      "code": "XT",
+      "name": "Upper middle income",
+      "year": 2024,
+      "population": 2817912698
+    },
+    "XU": {
+      "code": "XU",
+      "name": "North America",
+      "year": 2024,
+      "population": 381464223
+    },
+    "YE": {
+      "code": "YE",
+      "name": "Yemen, Rep.",
+      "year": 2024,
+      "population": 40583164
+    },
+    "ZA": {
+      "code": "ZA",
+      "name": "South Africa",
+      "year": 2024,
+      "population": 64007187
+    },
+    "ZF": {
+      "code": "ZF",
+      "name": "Sub-Saharan Africa (excluding high income)",
+      "year": 2024,
+      "population": 1158863843
+    },
+    "ZG": {
+      "code": "ZG",
+      "name": "Sub-Saharan Africa",
+      "year": 2024,
+      "population": 1291044964
+    },
+    "ZH": {
+      "code": "ZH",
+      "name": "Africa Eastern and Southern",
+      "year": 2024,
+      "population": 769280888
+    },
+    "ZI": {
+      "code": "ZI",
+      "name": "Africa Western and Central",
+      "year": 2024,
+      "population": 521764076
+    },
+    "ZJ": {
+      "code": "ZJ",
+      "name": "Latin America & Caribbean",
+      "year": 2024,
+      "population": 662186388
+    },
+    "ZM": {
+      "code": "ZM",
+      "name": "Zambia",
+      "year": 2024,
+      "population": 21314956
+    },
+    "ZQ": {
+      "code": "ZQ",
+      "name": "Middle East, North Africa, Afghanistan & Pakistan",
+      "year": 2024,
+      "population": 813146136
+    },
+    "ZT": {
+      "code": "ZT",
+      "name": "IDA & IBRD total",
+      "year": 2024,
+      "population": 6926222113
+    },
+    "ZW": {
+      "code": "ZW",
+      "name": "Zimbabwe",
+      "year": 2024,
+      "population": 16634373
+    }
+  }
+}
