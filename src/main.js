@@ -210,6 +210,7 @@ function wireControls() {
   elements.zoomInButton.addEventListener('click', () => zoomMap(1.45));
   elements.zoomOutButton.addEventListener('click', () => zoomMap(1 / 1.45));
   elements.resetMapButton.addEventListener('click', resetMapView);
+  elements.worldMap.addEventListener('wheel', handleMapWheel, { passive: false });
   elements.worldMap.addEventListener('pointerdown', startMapPan);
   elements.worldMap.addEventListener('pointermove', moveMapPan);
   elements.worldMap.addEventListener('pointerup', endMapPan);
@@ -413,21 +414,30 @@ function setShareButtonLabel(label) {
   }, 1600);
 }
 
-function zoomMap(factor) {
+function handleMapWheel(event) {
+  event.preventDefault();
+
+  const wheelDelta = event.deltaMode === WheelEvent.DOM_DELTA_LINE ? event.deltaY * 16 : event.deltaY;
+  const factor = Math.exp(-wheelDelta * 0.0015);
+
+  zoomMap(factor, getSvgPoint(event.clientX, event.clientY));
+}
+
+function zoomMap(factor, anchor = getMapCenterPoint()) {
   if (!state.mapBaseViewBox || !state.mapViewBox) {
     return;
   }
 
   const nextZoom = clamp(state.mapZoom * factor, 1, 5);
-  const centerX = state.mapViewBox.x + state.mapViewBox.width / 2;
-  const centerY = state.mapViewBox.y + state.mapViewBox.height / 2;
+  const ratioX = (anchor.x - state.mapViewBox.x) / state.mapViewBox.width;
+  const ratioY = (anchor.y - state.mapViewBox.y) / state.mapViewBox.height;
   const width = state.mapBaseViewBox.width / nextZoom;
   const height = state.mapBaseViewBox.height / nextZoom;
 
   state.mapZoom = nextZoom;
   state.mapViewBox = clampViewBox({
-    x: centerX - width / 2,
-    y: centerY - height / 2,
+    x: anchor.x - ratioX * width,
+    y: anchor.y - ratioY * height,
     width,
     height,
   });
@@ -503,6 +513,27 @@ function applyMapViewBox() {
   elements.zoomOutButton.disabled = state.mapZoom <= 1;
   elements.resetMapButton.disabled = state.mapZoom <= 1;
   elements.zoomInButton.disabled = state.mapZoom >= 5;
+}
+
+function getMapCenterPoint() {
+  return {
+    x: state.mapViewBox.x + state.mapViewBox.width / 2,
+    y: state.mapViewBox.y + state.mapViewBox.height / 2,
+  };
+}
+
+function getSvgPoint(clientX, clientY) {
+  const transform = elements.worldMap.getScreenCTM();
+
+  if (!transform) {
+    return getMapCenterPoint();
+  }
+
+  const point = elements.worldMap.createSVGPoint();
+  point.x = clientX;
+  point.y = clientY;
+
+  return point.matrixTransform(transform.inverse());
 }
 
 function clampViewBox(viewBox) {
