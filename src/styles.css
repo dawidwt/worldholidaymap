@@ -9,7 +9,7 @@
   --map-grid: rgba(95, 91, 83, 0.12);
   --land: #bdb9ad;
   --land-muted: #aaa69b;
-  --land-stroke: #f3f1e8;
+  --country-border: rgba(36, 33, 29, 0.42);
   --active: #f47b20;
   --active-deep: #9b4516;
   --active-soft: #f7c66a;
@@ -283,14 +283,15 @@ input[type="range"] {
 
 .country {
   fill: var(--land);
-  stroke: var(--land-stroke);
-  stroke-width: 0.48;
+  stroke: var(--country-border);
+  stroke-width: 0.56;
+  stroke-linejoin: round;
+  stroke-linecap: round;
   vector-effect: non-scaling-stroke;
   transition:
     fill 140ms ease,
     opacity 140ms ease,
-    stroke 140ms ease,
-    stroke-width 140ms ease;
+    stroke 140ms ease;
 }
 
 .country:focus {
@@ -302,27 +303,24 @@ input[type="range"] {
 .country--hovered {
   fill: #d2cdbc;
   outline: none;
-  stroke: var(--ink);
-  stroke-width: 1.35;
+  stroke: var(--country-border);
 }
 
 .country--active {
   fill: var(--active);
-  stroke: var(--ink);
-  stroke-width: 0.8;
+  stroke: var(--country-border);
 }
 
 .country--active:hover,
 .country--active:focus-visible,
 .country--active.country--hovered {
   fill: #ff943d;
-  stroke: var(--ink);
-  stroke-width: 1.55;
+  stroke: var(--country-border);
 }
 
 .country--no-data {
   fill: var(--land-muted);
-  opacity: 0.45;
+  opacity: 1;
 }
 
 .country-panel {
