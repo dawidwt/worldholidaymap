@@ -52,7 +52,7 @@ button {
   top: 0;
   z-index: 5;
   display: grid;
-  grid-template-columns: minmax(220px, 0.9fr) minmax(540px, 1.5fr);
+  grid-template-columns: minmax(220px, 0.9fr) minmax(640px, 1.8fr);
   gap: 18px;
   align-items: end;
   padding: 14px clamp(16px, 3vw, 34px);
@@ -97,7 +97,7 @@ h2 {
 
 .controls {
   display: grid;
-  grid-template-columns: minmax(190px, 250px) minmax(220px, 1fr) auto;
+  grid-template-columns: 112px minmax(190px, 280px) minmax(160px, 1fr) auto;
   gap: 10px;
   align-items: end;
 }
@@ -738,7 +738,7 @@ input[type="search"] {
   }
 
   .controls {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+    grid-template-columns: 112px minmax(0, 1fr) minmax(0, 1fr) auto;
   }
 
   .map-stage {
@@ -820,4 +820,15 @@ input[type="search"] {
     flex: 1;
   }
 
+}
+
+.data-status {
+  margin: 0;
+  padding: 10px 16px;
+  background: var(--paper);
+  color: var(--danger);
+}
+
+.data-status:empty {
+  display: none;
 }

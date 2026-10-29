@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Explore which countries have public holidays on any day in 2026, with a world map, population estimates, and global holiday rankings."
+      content="Explore which countries have public holidays on any day in 2026 and 2027, with a world map, population estimates, and global holiday rankings."
     />
     <link rel="canonical" href="https://worldholidaymap.com/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,7 +15,7 @@
     <meta property="og:title" content="World Holiday Map" />
     <meta
       property="og:description"
-      content="See which countries have a public holiday on any selected date in 2026."
+      content="See which countries have a public holiday on any selected date in 2026 and 2027."
     />
     <meta property="og:url" content="https://worldholidaymap.com/" />
     <meta property="og:image" content="https://worldholidaymap.com/social-card.svg" />
@@ -26,7 +26,7 @@
     <meta name="twitter:title" content="World Holiday Map" />
     <meta
       name="twitter:description"
-      content="See which countries have a public holiday on any selected date in 2026."
+      content="See which countries have a public holiday on any selected date in 2026 and 2027."
     />
     <meta name="twitter:image" content="https://worldholidaymap.com/social-card.svg" />
     <title>World Holiday Map</title>
@@ -35,11 +35,16 @@
     <div id="app" class="app-shell">
       <header class="topbar">
         <div class="title-group">
-          <p class="eyebrow">Public holidays 2026</p>
+          <p id="yearLabel" class="eyebrow">Public holidays 2026–2027</p>
           <h1>World Holiday Map</h1>
         </div>
 
         <div class="controls" aria-label="Date controls">
+          <label class="field year-field">
+            <span>Year</span>
+            <select id="yearSelect" aria-label="Year"></select>
+          </label>
+
           <label class="field">
             <span>Date</span>
             <select id="dateSelect"></select>
@@ -53,6 +58,8 @@
           <button id="todayButton" class="today-button" type="button">Today</button>
         </div>
       </header>
+
+      <p id="dataStatus" class="data-status" role="status" aria-live="polite"></p>
 
       <main class="workspace">
         <section class="map-stage" aria-label="World map">
@@ -162,7 +169,7 @@
             </button>
             <div id="methodologyPanel" class="methodology-panel" hidden>
               <p>
-                The map uses the generated 2026 public-holiday dataset in this project. Holidays are
+                The map uses the generated public-holiday dataset for the selected year in this project. Holidays are
                 calculated with the <strong>date-holidays</strong> library and filtered to entries marked
                 as <strong>public</strong>. Timeanddate - Holidays Worldwide is linked as a reference for
                 manual comparison, not scraped live by the app.

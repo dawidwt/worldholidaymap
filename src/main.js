@@ -1,7 +1,10 @@
 import world from '@svg-maps/world';
 import './styles.css';
+import {
+  SUPPORTED_YEARS, isSupportedDate, getInitialDate, getTodayDate, dateInYear,
+  getDaysInYear, isoFromDayIndex, dayIndexFromIso,
+} from './calendar.js';
 
-const DAY_MS = 24 * 60 * 60 * 1000;
 const dateFormatter = new Intl.DateTimeFormat('en-US', {
   weekday: 'long',
   day: 'numeric',
@@ -31,6 +34,10 @@ const fullNumberFormatter = new Intl.NumberFormat('en-US');
 const collator = new Intl.Collator('en');
 
 const elements = {
+  yearSelect: document.querySelector('#yearSelect'),
+  dataStatus: document.querySelector('#dataStatus'),
+  yearLabel: document.querySelector('#yearLabel'),
+  rankingTitle: document.querySelector('#rankingTitle'),
   dateSelect: document.querySelector('#dateSelect'),
   dateSlider: document.querySelector('#dateSlider'),
   todayButton: document.querySelector('#todayButton'),
@@ -63,6 +70,8 @@ const elements = {
 
 const state = {
   data: null,
+  dataByYear: new Map(),
+  selectionRequest: 0,
   selectedDate: null,
   selectedCountryCode: null,
   countrySearch: '',
@@ -82,24 +91,42 @@ init();
 
 async function init() {
   try {
-    const dataUrl = `${import.meta.env.BASE_URL}holidays-2026.json`;
-    const response = await fetch(dataUrl);
-
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-
-    state.data = await response.json();
-    buildCountryHolidayIndex();
+    const iso = getInitialDate(window.location.search);
+    state.data = await loadYear(Number(iso.slice(0, 4)));
     renderMap();
-    buildDateControls();
+    elements.yearSelect.replaceChildren(...SUPPORTED_YEARS.map((year) => {
+      const option = document.createElement('option');
+      option.value = String(year);
+      option.textContent = String(year);
+      return option;
+    }));
+    activateYear();
     wireControls();
-    setSelectedDate(getInitialDate());
-    renderSource();
-    renderTopDayRanking();
+    await setSelectedDate(iso);
   } catch (error) {
     document.body.innerHTML = `<main class="load-error"><h1>Could not load holiday data</h1><p>${escapeHtml(error.message)}</p></main>`;
   }
+}
+
+async function loadYear(year) {
+  if (state.dataByYear.has(year)) return state.dataByYear.get(year);
+  const response = await fetch(`${import.meta.env.BASE_URL}holidays-${year}.json`);
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  const data = await response.json();
+  if (data.year !== year) throw new Error(`Expected holiday data for ${year}`);
+  state.dataByYear.set(year, data);
+  return data;
+}
+
+function activateYear() {
+  elements.yearSelect.value = String(state.data.year);
+  elements.yearLabel.textContent = `Public holidays ${state.data.year}`;
+  elements.rankingTitle.textContent = `Top 10 holiday days in ${state.data.year}`;
+  buildCountryHolidayIndex();
+  buildDateControls();
+  renderSource();
+  renderTopDayRanking();
+  hideTooltip();
 }
 
 function renderMap() {
@@ -184,7 +211,7 @@ function buildDateControls() {
   elements.dateSlider.max = String(days - 1);
 
   for (let dayIndex = 0; dayIndex < days; dayIndex += 1) {
-    const iso = isoFromDayIndex(dayIndex);
+    const iso = isoFromDayIndex(state.data.year, dayIndex);
     const count = getStatsForDate(iso).countryCount;
     const option = document.createElement('option');
 
@@ -193,15 +220,18 @@ function buildDateControls() {
     fragment.append(option);
   }
 
-  elements.dateSelect.append(fragment);
+  elements.dateSelect.replaceChildren(fragment);
 }
 
 function wireControls() {
+  elements.yearSelect.addEventListener('change', () => {
+    setSelectedDate(dateInYear(state.selectedDate, Number(elements.yearSelect.value)));
+  });
   elements.dateSelect.addEventListener('change', () => setSelectedDate(elements.dateSelect.value));
   elements.dateSlider.addEventListener('input', () => {
-    setSelectedDate(isoFromDayIndex(Number(elements.dateSlider.value)));
+    setSelectedDate(isoFromDayIndex(state.data.year, Number(elements.dateSlider.value)));
   });
-  elements.todayButton.addEventListener('click', () => setSelectedDate(getTodayForYear()));
+  elements.todayButton.addEventListener('click', () => setSelectedDate(getTodayDate()));
   elements.countrySearch.addEventListener('input', () => {
     state.countrySearch = elements.countrySearch.value;
     renderHolidayList();
@@ -219,7 +249,7 @@ function wireControls() {
   elements.countryPanelClose.addEventListener('click', closeCountryPanel);
   elements.methodologyButton.addEventListener('click', toggleMethodology);
   window.addEventListener('popstate', () => {
-    setSelectedDate(getInitialDate(), { updateUrl: false });
+    setSelectedDate(getInitialDate(window.location.search), { updateUrl: false });
   });
 
   for (const tab of elements.rankingTabs) {
@@ -230,9 +260,30 @@ function wireControls() {
   }
 }
 
-function setSelectedDate(iso, options = {}) {
+async function setSelectedDate(iso, options = {}) {
   const { updateUrl = true } = options;
-  const selectedIso = isIsoInSelectedYear(iso) ? iso : `${state.data.year}-01-01`;
+  const selectedIso = isSupportedDate(iso) ? iso : getTodayDate();
+  const year = Number(selectedIso.slice(0, 4));
+  const request = ++state.selectionRequest;
+  elements.dataStatus.textContent = '';
+  if (year !== state.data.year) {
+    elements.dataStatus.textContent = `Loading ${year} holidays…`;
+    try {
+      const data = await loadYear(year);
+      if (request !== state.selectionRequest) return;
+      state.data = data;
+      activateYear();
+    } catch {
+      if (request !== state.selectionRequest) return;
+      elements.yearSelect.value = String(state.data.year);
+      elements.dataStatus.textContent = `Could not load ${year} holidays. Please try again.`;
+      // A failed history navigation must not leave the URL describing another year.
+      updateDateUrl(state.selectedDate);
+      return;
+    }
+  }
+  elements.yearSelect.value = String(state.data.year);
+  elements.dataStatus.textContent = '';
   state.selectedDate = selectedIso;
   const dayIndex = dayIndexFromIso(selectedIso);
 
@@ -277,6 +328,7 @@ function updateMap() {
   for (const [code, path] of state.pathsByCode.entries()) {
     const hasHoliday = state.rowsByCode.has(code);
     path.classList.toggle('country--active', hasHoliday);
+    path.classList.toggle('country--no-data', !state.data.countries[code]);
     path.setAttribute('aria-current', hasHoliday ? 'date' : 'false');
   }
 }
@@ -755,56 +807,6 @@ function getStatsForDate(iso) {
   );
 }
 
-function getInitialDate() {
-  const urlDate = new URLSearchParams(window.location.search).get('date');
-
-  if (isIsoInSelectedYear(urlDate)) {
-    return urlDate;
-  }
-
-  return getTodayForYear();
-}
-
-function getTodayForYear() {
-  const now = new Date();
-
-  if (now.getFullYear() === state.data.year) {
-    return toLocalIso(now);
-  }
-
-  return `${state.data.year}-01-01`;
-}
-
-function getDaysInYear(year) {
-  return Math.round((Date.UTC(year + 1, 0, 1) - Date.UTC(year, 0, 1)) / DAY_MS);
-}
-
-function isoFromDayIndex(dayIndex) {
-  const date = new Date(Date.UTC(state.data.year, 0, 1 + dayIndex));
-  return date.toISOString().slice(0, 10);
-}
-
-function dayIndexFromIso(iso) {
-  const [year, month, day] = iso.split('-').map(Number);
-  return Math.round((Date.UTC(year, month - 1, day) - Date.UTC(state.data.year, 0, 1)) / DAY_MS);
-}
-
-function isIsoInSelectedYear(iso) {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(iso))) {
-    return false;
-  }
-
-  const [year, month, day] = iso.split('-').map(Number);
-  const date = new Date(Date.UTC(year, month - 1, day));
-
-  return (
-    year === state.data.year &&
-    date.getUTCFullYear() === year &&
-    date.getUTCMonth() === month - 1 &&
-    date.getUTCDate() === day
-  );
-}
-
 function updateDateUrl(iso) {
   const url = new URL(window.location.href);
   url.searchParams.set('date', iso);
@@ -868,13 +870,6 @@ function normalizeSearch(value) {
 function dateFromIso(iso) {
   const [year, month, day] = iso.split('-').map(Number);
   return new Date(Date.UTC(year, month - 1, day));
-}
-
-function toLocalIso(date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
 }
 
 function pluralize(count, singular, plural) {
